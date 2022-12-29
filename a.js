@@ -1,4 +1,6 @@
 const res = require('express/lib/response');
+
+//const bookid=require('./index')
 const { Pool } = require('pg');
 
 const pool = new Pool({
@@ -8,9 +10,18 @@ const pool = new Pool({
     password: 'athira13',
     port: 19935,
 });
+let count=1;
+const inc = {
+     bookid: function() {
+
+    return count+1;
+}
+}
 
 const bookingroom=(req,res)=>{
-    const bid=5;
+   
+   // let bid=bookid.bookid;
+   let bookkid=3
     const userid=req.body.userid;
     const category=req.body.category;
     const bed=req.body.bed;
@@ -24,13 +35,29 @@ const bookingroom=(req,res)=>{
                     msg:"No rooms available!"
             });
 
-
+            //console.log(bookid.bookid);
             if(response.rows.length!=0){
-                pool.query("insert into booking values ($1,$2,$3,$4,$5)",[bid,userid,response.rows[0].roomno,checkin,checkout],(err,results)=>{
+                pool.query(
+                    "select max(bookingid) from booking",(err,response)=>{
+                        if(err){
+                            throw err
+                        }
+                         bookkid=response.rows[0].bookingid;
+                         bookkid=bookkid+1;
+                        res.send({
+                            status:"Success",
+                            msg:" bookidSuccess",
+                       });
+                    }
+                )
+                // const bid=inc.bookid();
+                // console.log(bid);
+                pool.query("insert into booking values ($1,$2,$3,$4,$5)",[bookkid,userid,response.rows[0].roomno,checkin,checkout],(err,results)=>{
                     if(err){
                         throw err
                     }
-                
+                    //console.log(bookid.bookid);
+                   // bookid.bookid=bookid.bookid+1;
                     res.send({
                        
                         msg:"successfully booked \nBooking id :"+bid,
