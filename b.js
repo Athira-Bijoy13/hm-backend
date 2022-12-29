@@ -25,6 +25,24 @@ pool.query(
   }
 )
 }
+
+const addreview=(req,res)=>{
+    const userid=req.body.userid;
+    const desc=req.body.desc;
+    const rating=req.body.rating;
+
+    pool.query(
+        "insert into review values($1,$2,$3)",[userid,desc,rating],(err,response)=>{
+            if(err)
+                throw err
+            res.send({
+                status:"Sucess",
+                msg:"Successfully added review"
+            })
+        }
+    )
+}
 module.exports={
-    bookinghistory
+    bookinghistory,
+    addreview
 }

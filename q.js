@@ -56,21 +56,7 @@ const login=(req,res)=>{
 }
 
 
-const getbooking=(req,res)=>{
-    const bid=req.body.bid;
-    const userid=req.body.userid;
-    const room=req.body.room;
-    const checkin=req.body.checkin;
-    const checkout=req.body.checkout;
 
-    
-    pool.query("insert into booking values ($1,$2,$3,$4,$5)",[bid,userid,room,checkin,checkout],(err,results)=>{
-        if(err){
-            throw err
-        }
-        res.send("successfully booked \nBooking id :"+bid);
-    })
-}
 const cancelbooking=(req,res)=>{
     const ID=req.body.bid;
     const cid=req.body.cid;
@@ -99,7 +85,7 @@ module.exports={
    // createuser,
     login,
     //createbooking,
-    getbooking,
+   
     getbooked,
     cancelbooking
 }

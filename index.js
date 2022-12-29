@@ -14,7 +14,7 @@ app.get('/vacateroom',query1.vacateroom);
 app.get('/contact',query3.contact);
 app.post('/signup',query.signup);
 app.post('/login',query.login);
-app.post('/bookingdata',query.getbooking);
+app.post('/addreview',query2.addreview);
 app.get('/listbooked',query.getbooked);
 app.get('/cancel',query.cancelbooking);
 app.listen(port,()=>{
