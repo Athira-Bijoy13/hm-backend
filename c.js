@@ -1,3 +1,4 @@
+const { response } = require('express');
 const res = require('express/lib/response');
 const { Pool } = require('pg');
 
@@ -11,7 +12,16 @@ const pool = new Pool({
 const contact=(req,res)=>
 {
  pool.query(
-    "select staffname,position,phno from staff "
+    "select staffname,position,phno from staff ",(err,response)=>
+    {
+        if(err)
+        {
+            throw err;
+        }
+        res.send(
+            response.rows
+        )
+    }
  )   
 }
 module.exports={
