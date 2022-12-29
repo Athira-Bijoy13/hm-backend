@@ -2,11 +2,11 @@ const res = require('express/lib/response');
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
+    user: 'athira',
+    host: 'postgresql-102261-0.cloudclusters.net',
     database: 'athira',
     password: 'athira13',
-    port: 5432,
+    port: 19935,
 });
 
 
@@ -45,7 +45,7 @@ const login=(req,res)=>{
             if(response.rows.length==0){
                 return res.send({
                     status:"failed",
-                    msg:"invalid login",
+                    msg:"0invalid login",
                 });
             }
             if(pass==response.rows[0].pass){
