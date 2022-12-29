@@ -21,4 +21,3 @@ app.get('/cancel',query.cancelbooking);
 app.listen(port,()=>{
     console.log("App running")
 });
-//module.exports={bookid}

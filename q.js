@@ -82,13 +82,9 @@ const getbooked=(req,res)=>{
 
 module.exports={
     signup,
-   // createuser,
-    login,
-    //createbooking,
-   
+    login,   
     getbooked,
     cancelbooking
 }
 
 
-//
