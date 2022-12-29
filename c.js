@@ -24,6 +24,23 @@ const contact=(req,res)=>
     }
  )   
 }
+const reviews_display=(req,res)=>
+{
+    
+    pool.query(
+        "select c.name,r.rating,r.description from customer as c,review as r where c.id=r.userid",(err,response)=>
+        {
+            if(err)
+            {
+                throw err;
+            }
+            res.send(
+                response.rows
+            )
+        }
+    )
+}
 module.exports={
-   contact
+   contact,
+   reviews_display
 }
