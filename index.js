@@ -2,11 +2,12 @@ const express=require('express');
 const bodyParser=require('body-parser')
 const query=require('./q.js')
 const query1=require('./a.js')
+const query2=require('./b.js')
 const app=express();
 const port=3000
 app.use(bodyParser.json())
 
-
+app.get('/bookinghistory',query2.bookinghistory);
 app.get('/bookroom',query1.bookingroom);
 app.get('/vacateroom',query1.vacateroom);
 app.post('/signup',query.signup);
