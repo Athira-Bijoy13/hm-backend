@@ -1,12 +1,14 @@
 const express=require('express');
 const bodyParser=require('body-parser')
 const query=require('./q.js')
+const query1=require('./a.js')
 const app=express();
 const port=3000
 app.use(bodyParser.json())
 
-app.get('/createt',query.createuser);
-app.get('/booking',query.createbooking);
+
+app.get('/bookroom',query1.bookingroom);
+app.get('/vacateroom',query1.vacateroom);
 app.post('/signup',query.signup);
 app.post('/login',query.login);
 app.post('/bookingdata',query.getbooking);

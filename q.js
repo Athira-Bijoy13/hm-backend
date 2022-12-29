@@ -1,24 +1,15 @@
-const res = require('express/lib/response');
+const res = require('express/lib/response');//package
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
+    user: 'athira',
+    host: 'postgresql-102261-0.cloudclusters.net',
     database: 'athira',
     password: 'athira13',
-    port: 5432,
-});
+    port: 19935,
+});//connection establish
 
 
-const createuser=(req,res)=>{
-    pool.query("create table customer(id int primary key,fname varchar(10) not null,lname varchar(10),age int,address varchar(20),phone varchar(10),no_of_guests int)",(err,results)=>{
-        if(err){
-            throw err
-        }
-       
-        res.send(results.rows)
-    })
-}
 const signup=(req,res)=>{
     const id=req.body.id;
     const name=req.body.name;
@@ -63,15 +54,7 @@ const login=(req,res)=>{
         }
     )
 }
-const createbooking=(req,res)=>{
-    pool.query("create table booking(bid int primary key,userid int,room int,checkin date,checkout date,foreign key(userid) references customer(id))",(err,results)=>{
-        if(err){
-            throw err
-        }
-       
-        res.send(results.rows)
-    })
-}
+
 
 const getbooking=(req,res)=>{
     const bid=req.body.bid;
@@ -89,9 +72,9 @@ const getbooking=(req,res)=>{
     })
 }
 const cancelbooking=(req,res)=>{
-    const ID=102;
-    const cid=1002;
-    pool.query("delete from booking where bid=101 and userid=1001",(err,results)=>{
+    const ID=req.body.bid;
+    const cid=req.body.cid;
+    pool.query("delete from booking where bid=$1 and userid=$2",[ID,cid],(err,results)=>{
         if(err){
             throw err
         }
@@ -113,9 +96,9 @@ const getbooked=(req,res)=>{
 
 module.exports={
     signup,
-    createuser,
+   // createuser,
     login,
-    createbooking,
+    //createbooking,
     getbooking,
     getbooked,
     cancelbooking
