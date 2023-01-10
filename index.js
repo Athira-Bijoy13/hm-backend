@@ -6,7 +6,7 @@ const query2=require('./b.js')
 const query3=require('./c.js')
 const cors=require("cors");
 const app=express();
-const port=8000
+const port=process.env.PORT || 8000;
 app.use(bodyParser.json())
 
 const corsOptions ={
