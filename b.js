@@ -2,11 +2,11 @@ const res = require('express/lib/response');
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    user: 'athira',
-    host: 'postgresql-102261-0.cloudclusters.net',
-    database: 'athira',
+    user: 'user',
+    host: 'postgresql-104336-0.cloudclusters.net',
+    database: 'hotel',
     password: 'athira13',
-    port: 19935,
+    port: 10006,
 });
 
 const bookinghistory=(req,res)=>
