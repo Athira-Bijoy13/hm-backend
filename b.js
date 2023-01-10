@@ -19,9 +19,10 @@ pool.query(
     if(err){
         throw err
     }
-    res.send(
-        response.rows
-    )
+    res.send({
+        status:"success",
+        bookings:response.rows
+     } )
   }
 )
 }

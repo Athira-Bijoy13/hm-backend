@@ -23,13 +23,13 @@ const bookingroom = async(req, res) => {
     const checkin = req.body.checkin;
     const checkout = req.body.checkout;
     const no = req.body.no;
-    const avail = 'yes'
+    const avail = 'Yes'
     pool.query(
         "select * from room where category=$1 and bed=$2 and type=$3 and available=$4", [category, bed, type, avail],async(err, response) => {
-           
+           console.log(response.rows.length)
             if (response.rows.length < no)
                 return res.send({
-                    status: " booking failed",
+                    status: "booking failed",
                     msg: "No rooms available!"
                 });
 

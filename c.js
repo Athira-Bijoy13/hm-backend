@@ -18,9 +18,10 @@ const contact=(req,res)=>
         {
             throw err;
         }
-        res.send(
-            response.rows
-        )
+        res.send({
+            status:"success",
+            staff:response.rows
+    })
     }
  )   
 }
@@ -34,9 +35,10 @@ const reviews_display=(req,res)=>
             {
                 throw err;
             }
-            res.send(
-                response.rows
-            )
+            res.send({
+                status:"success",
+                review:response.rows
+        })
         }
     )
 }

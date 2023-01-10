@@ -11,18 +11,30 @@ const pool = new Pool({
 
 
 const signup=(req,res)=>{
-    const id=req.body.id;
+   let id;
     const name=req.body.name;
     const age=req.body.age;
     const ad=req.body.ad;
     const ph=req.body.phone;
     const email=req.body.email;
     const pass=req.body.pass;
-    pool.query("insert into customer values ($1,$2,$3,$4,$5,$6,$7) ",[id,name,age,ad,ph,email,pass],(err,results)=>{
+    pool.query("select max(id) from customer", async(error, respond) => {
+        if (error) {
+            throw error;
+        }
+        id=respond.rows[0].max;
+        id=id+1;
+       
+
+   await pool.query("insert into customer values ($1,$2,$3,$4,$5,$6,$7) ",[id,name,age,ad,ph,email,pass],(err,results)=>{
         if(err){
             throw err
         }
-        res.send("successfully added customer")
+        res.send({
+            status:"success",
+            msg:"successfully added customer"
+        })
+    })
     })
 }
 
